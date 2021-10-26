@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.project.bitereg.R
 import com.project.bitereg.databinding.FragmentSignUpBinding
 
 class SignUpFragment : Fragment() {
@@ -17,6 +19,10 @@ class SignUpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSignUpBinding.inflate(layoutInflater, container, false)
+
+        binding.loginText.setOnClickListener {
+            findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
+        }
 
         return binding.root
     }
