@@ -4,11 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/android/projects/BITeRegister/app/src/main/res/drawable/ic_email.xml" value="0.2755208333333333" />
+        <entry key="..\:/android/projects/BITeRegister/app/src/main/res/drawable/ic_key.xml" value="0.2755208333333333" />
         <entry key="..\:/android/projects/BITeRegister/app/src/main/res/drawable/ic_logo.xml" value="0.2755208333333333" />
+        <entry key="..\:/android/projects/BITeRegister/app/src/main/res/drawable/password_toggle.xml" value="0.2755208333333333" />
         <entry key="..\:/android/projects/BITeRegister/app/src/main/res/layout/activity_auth.xml" value="0.264" />
         <entry key="..\:/android/projects/BITeRegister/app/src/main/res/layout/activity_main.xml" value="0.136" />
         <entry key="..\:/android/projects/BITeRegister/app/src/main/res/layout/activity_splash.xml" value="0.264" />
         <entry key="..\:/android/projects/BITeRegister/app/src/main/res/layout/fragment_login.xml" value="0.264" />
+        <entry key="..\:/android/projects/BITeRegister/app/src/main/res/layout/fragment_sign_up.xml" value="0.264" />
       </map>
     </option>
   </component>
