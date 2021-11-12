@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "534989445757",
+    "project_id": "bit-e-reg-v-1",
+    "storage_bucket": "bit-e-reg-v-1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:534989445757:android:b5c50ed856adaa6972af14",
+        "android_client_info": {
+          "package_name": "com.project.bitereg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "534989445757-vb9avtqf896hogfimii71g29k5vk0jth.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzz_ufXxpJfwGOulWddnFwLPEz-H0jGfY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "534989445757-vb9avtqf896hogfimii71g29k5vk0jth.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

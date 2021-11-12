@@ -94,6 +94,7 @@
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/primary_accent"
             app:startIconDrawable="@drawable/ic_lock"
+            app:passwordToggleDrawable="@drawable/password_toggle"
             app:startIconTint="@color/primary_accent">
 
             <com.google.android.material.textfield.TextInputEditText
