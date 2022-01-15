@@ -1,17 +1,20 @@
 package com.project.bitereg.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.project.bitereg.auth.Authenticator
 import com.project.bitereg.auth.firebaseimpl.AuthResponse
+import com.project.bitereg.db.UserDao
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AuthViewModel @Inject constructor(private val authDb: Authenticator) : ViewModel() {
+class AuthViewModel @Inject constructor(
+    private val authDb: Authenticator,
+    private val userDao: UserDao
+) : ViewModel() {
 
     companion object {
         const val TAG = "AuthViewModel"
@@ -19,15 +22,17 @@ class AuthViewModel @Inject constructor(private val authDb: Authenticator) : Vie
 
     val authResultFlow = MutableStateFlow<AuthResponse>(AuthResponse.None)
 
-    fun createUser(email: String, password: String) {
-        Log.d(TAG, "createUser: isme aaya 0")
+    fun createUser(name: String, email: String, password: String) {
         viewModelScope.launch {
             authResultFlow.emit(AuthResponse.Loading)
-            authResultFlow.emit(authDb.createUser(email, password))
+            val response = authDb.createUser(name, email, password)
+            if (response is AuthResponse.Success) userDao.addUser(response.authResult)
+            authResultFlow.emit(response)
         }
     }
 
-    suspend fun loginUser(email: String, password: String) =
+    suspend fun loginUser(email: String, password: String) {
         authDb.loginUser(email, password)
+    }
 
 }
