@@ -9,7 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="primary_accent">#EFA54E</color>
-    <color name="light_bg">#FDFCEF</color>
+    <color name="light_bg">#EDEDED</color>
     <color name="dark_bg">#222020</color>
     <color name="primary_text_color">#797979</color>
     <color name="mtrl_textinput_default_box_stroke_color">#EFA54E</color>

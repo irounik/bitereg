@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="OutlineTextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">@color/primary_accent</item>
+        <item name="boxStrokeColor">@color/primary_accent</item>
+        <item name="hintTextColor">@color/primary_accent</item>
+        <item name="startIconTint">@color/primary_accent</item>
+        <item name="passwordToggleTint">@color/primary_accent</item>
+        <item name="android:editTextStyle">@style/EditTextStyle</item>
+
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="android:padding">2dp</item>
+
+        <item name="boxCornerRadiusBottomEnd">@dimen/inp_corner_rad</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/inp_corner_rad</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/inp_corner_rad</item>
+        <item name="boxCornerRadiusTopStart">@dimen/inp_corner_rad</item>
+    </style>
+
+    <style name="EditTextStyle" parent="Widget.MaterialComponents.TimePicker.Display.TextInputEditText">
+        <item name="android:textColor">@color/primary_accent</item>
+    </style>
+
+    <style name="OutlineButtonStyle" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textColor">@color/primary_accent</item>
+        <item name="backgroundTint">?attr/colorOnPrimary</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:paddingLeft">24dp</item>
+        <item name="android:paddingRight">24dp</item>
+        <item name="cornerRadius">18dp</item>
+        <item name="strokeColor">@color/primary_accent</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+</resources>

@@ -54,24 +54,13 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/full_name"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/OutlineTextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="36dp"
                 android:autofillHints="username"
-                android:orientation="vertical"
-                android:padding="2dp"
-                android:textColorHint="@color/primary_accent"
-                app:boxCornerRadiusBottomEnd="@dimen/inp_corner_rad"
-                app:boxCornerRadiusBottomStart="@dimen/inp_corner_rad"
-                app:boxCornerRadiusTopEnd="@dimen/inp_corner_rad"
-                app:boxCornerRadiusTopStart="@dimen/inp_corner_rad"
-                app:boxStrokeColor="@color/primary_accent"
-                app:boxStrokeWidth="2dp"
-                app:hintTextColor="@color/primary_accent"
                 app:layout_constraintTop_toBottomOf="@+id/login_logo"
                 app:startIconDrawable="@drawable/ic_user"
-                app:startIconTint="@color/primary_accent"
                 tools:layout_editor_absoluteX="36dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -85,24 +74,14 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/email_input"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/OutlineTextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="36dp"
                 android:layout_marginTop="@dimen/input_gap"
                 android:autofillHints="emailAddress"
-                android:padding="2dp"
-                android:textColorHint="@color/primary_accent"
-                app:boxCornerRadiusBottomEnd="@dimen/inp_corner_rad"
-                app:boxCornerRadiusBottomStart="@dimen/inp_corner_rad"
-                app:boxCornerRadiusTopEnd="@dimen/inp_corner_rad"
-                app:boxCornerRadiusTopStart="@dimen/inp_corner_rad"
-                app:boxStrokeColor="@color/primary_accent"
-                app:boxStrokeWidth="2dp"
-                app:hintTextColor="@color/primary_accent"
                 app:layout_constraintTop_toBottomOf="@+id/full_name"
-                app:startIconDrawable="@drawable/ic_email"
-                app:startIconTint="@color/primary_accent">
+                app:startIconDrawable="@drawable/ic_email">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -115,27 +94,17 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/password_input"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/OutlineTextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="36dp"
                 android:layout_marginTop="@dimen/input_gap"
                 android:autofillHints="emailAddress"
-                android:padding="2dp"
-                android:textColorHint="@color/primary_accent"
-                app:boxCornerRadiusBottomEnd="@dimen/inp_corner_rad"
-                app:boxCornerRadiusBottomStart="@dimen/inp_corner_rad"
-                app:boxCornerRadiusTopEnd="@dimen/inp_corner_rad"
-                app:boxCornerRadiusTopStart="@dimen/inp_corner_rad"
-                app:boxStrokeColor="@color/primary_accent"
-                app:boxStrokeWidth="2dp"
-                app:hintTextColor="@color/primary_accent"
                 app:layout_constraintTop_toBottomOf="@+id/email_input"
                 app:passwordToggleDrawable="@drawable/password_toggle"
                 app:passwordToggleEnabled="true"
                 app:passwordToggleTint="@color/primary_accent"
-                app:startIconDrawable="@drawable/ic_lock"
-                app:startIconTint="@color/primary_accent">
+                app:startIconDrawable="@drawable/ic_lock">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -148,27 +117,17 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/confirm_password_input"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/OutlineTextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="36dp"
                 android:layout_marginTop="@dimen/input_gap"
                 android:autofillHints="emailAddress"
-                android:padding="2dp"
-                android:textColorHint="@color/primary_accent"
-                app:boxCornerRadiusBottomEnd="@dimen/inp_corner_rad"
-                app:boxCornerRadiusBottomStart="@dimen/inp_corner_rad"
-                app:boxCornerRadiusTopEnd="@dimen/inp_corner_rad"
-                app:boxCornerRadiusTopStart="@dimen/inp_corner_rad"
-                app:boxStrokeColor="@color/primary_accent"
-                app:boxStrokeWidth="2dp"
-                app:hintTextColor="@color/primary_accent"
                 app:layout_constraintTop_toBottomOf="@+id/password_input"
                 app:passwordToggleDrawable="@drawable/password_toggle"
                 app:passwordToggleEnabled="true"
                 app:passwordToggleTint="@color/primary_accent"
-                app:startIconDrawable="@drawable/ic_key"
-                app:startIconTint="@color/primary_accent">
+                app:startIconDrawable="@drawable/ic_key">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
