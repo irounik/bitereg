@@ -12,4 +12,13 @@
     <string name="sign_up">Sign Up</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="full_name">Full Name</string>
+
+    <!--    Details Input Screen -->
+    <string name="course_input">Course</string>
+    <string name="submit">Submit</string>
+    <string name="branch_input">Branch</string>
+    <string name="bath_input">Batch</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="gender">Gender</string>
+    <string name="phone_number">Phone Number</string>
 </resources>

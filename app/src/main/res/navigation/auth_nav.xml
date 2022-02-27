@@ -13,6 +13,10 @@
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
+        <action
+            app:popUpTo="@id/detailInputFragment"
+            android:id="@+id/action_loginFragment_to_detailInputFragment"
+            app:destination="@id/detailInputFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -24,5 +28,27 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/signUpFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_signUpFragment_to_detailInputFragment"
+            app:destination="@id/detailInputFragment"
+            app:popUpTo="@id/signUpFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/detailInputFragment"
+        android:name="com.project.bitereg.view.auth.DetailInputFragment"
+        android:label="fragment_detail_input"
+        tools:layout="@layout/fragment_detail_input" >
+        <action
+            android:id="@+id/action_detailInputFragment_to_selectionBottomSheet"
+            app:destination="@id/selectionBottomSheet" />
+    </fragment>
+    <dialog
+        android:id="@+id/selectionBottomSheet"
+        android:name="com.project.bitereg.utils.SelectionBottomSheet"
+        android:label="SelectionBottomSheet" >
+        <action
+            android:id="@+id/action_selectionBottomSheet_to_detailInputFragment"
+            app:destination="@id/detailInputFragment"
+            app:popUpTo="@id/detailInputFragment" />
+    </dialog>
 </navigation>

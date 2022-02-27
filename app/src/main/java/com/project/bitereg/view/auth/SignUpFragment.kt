@@ -117,6 +117,7 @@ class SignUpFragment : Fragment() {
             is AuthResponse.Success -> {
                 Log.d(TAG, "setupFlow: ${authResponse.authResult.user?.uid}")
                 toggleViews(false)
+                findNavController().navigate(R.id.action_signUpFragment_to_detailInputFragment)
             }
 
             is AuthResponse.Failure -> {
