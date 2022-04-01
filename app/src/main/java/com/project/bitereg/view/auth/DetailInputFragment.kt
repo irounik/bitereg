@@ -1,12 +1,14 @@
 package com.project.bitereg.view.auth
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
 import androidx.core.view.children
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -17,6 +19,7 @@ import com.project.bitereg.models.UserDetails
 import com.project.bitereg.utils.CommonUtils
 import com.project.bitereg.utils.DataUtils
 import com.project.bitereg.utils.SelectionBottomSheet
+import com.project.bitereg.view.activities.DashboardActivity
 import com.project.bitereg.viewmodel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -62,8 +65,10 @@ class DetailInputFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
             submitBtn.setOnClickListener {
                 if (!validInput()) return@setOnClickListener
+                binding.progressBar.isVisible = true
                 lifecycleScope.launch {
                     val success = viewModel.updateUserDetails(getUserDetailsFromInput())
+                    binding.progressBar.isVisible = false
                     if (success) handleSuccess()
                     else handleFailure()
                 }
@@ -72,7 +77,10 @@ class DetailInputFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     }
 
     private fun handleSuccess() {
-        // TODO: Go to dashboard
+        requireActivity().apply {
+            startActivity(Intent(this, DashboardActivity::class.java))
+            this.finish()
+        }
     }
 
     private fun handleFailure() {

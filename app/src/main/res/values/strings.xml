@@ -22,4 +22,8 @@
     <string name="gender">Gender</string>
     <string name="phone_number">Phone Number</string>
     <string name="date_format">%$1d-%$2d-%$3d</string>
+    <string name="home">Home</string>
+    <string name="account">Account</string>
+    <string name="qr_code">QR Code</string>
+    <string name="logout">Logout</string>
 </resources>
