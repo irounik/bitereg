@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.project.bitereg.auth.Authenticator
 import com.project.bitereg.auth.firebaseimpl.AuthResponse
 import com.project.bitereg.db.UserDao
+import com.project.bitereg.models.UserDetails
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch

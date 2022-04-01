@@ -44,6 +44,9 @@ object CommonUtils {
     private fun isPasswordValid(password: String) =
         password.matches(Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@\$%^&*-]).{8,}\$"))
 
+    private fun verifyPhoneNumber(phoneNumber: String): Boolean =
+        phoneNumber.matches(Regex("[0-9]{10}"))
+
     /**
      * This method is used to set error state to a TextInputLayout.
      *
@@ -92,6 +95,7 @@ object CommonUtils {
             VerificationType.EMAIL -> isEmailValid(inputText)
             VerificationType.PASSWORD -> isPasswordValid(inputText)
             VerificationType.USER_NAME -> verifyUserName(inputText)
+            VerificationType.PHONE -> verifyPhoneNumber(inputText)
         }
 
         if (isInputValid) return true
@@ -101,6 +105,7 @@ object CommonUtils {
             VerificationType.EMAIL -> "Invalid Email, please enter BIT Web Mail!"
             VerificationType.PASSWORD -> "Invalid Password!!"
             VerificationType.USER_NAME -> "Invalid User Name!!"
+            VerificationType.PHONE -> "Invalid phone number!"
         }
 
         inputLayout.editText?.apply {
@@ -115,7 +120,8 @@ object CommonUtils {
         BLANK_CHECK,
         EMAIL,
         PASSWORD,
-        USER_NAME
+        USER_NAME,
+        PHONE
     }
 
     @ColorInt
