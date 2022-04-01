@@ -38,6 +38,11 @@ class AuthViewModel @Inject constructor(
         authDb.loginUser(email, password)
     }
 
+    suspend fun logoutUser(): Boolean {
+        authDb.logoutUser()
+        return true
+    }
+
     suspend fun updateUserDetails(userDetails: UserDetails): Boolean {
         val currentUser = authDb.getCurrentUser() ?: return false
         currentUser.details = userDetails

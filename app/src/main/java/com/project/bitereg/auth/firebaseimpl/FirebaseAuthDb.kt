@@ -52,4 +52,10 @@ class FirebaseAuthDb(context: Context) : Authenticator {
     override fun isUserLoggedIn(): Boolean {
         return Firebase.auth.currentUser != null
     }
+
+    override suspend fun logoutUser(): Boolean {
+        if (Firebase.auth.currentUser == null) return true
+        Firebase.auth.signOut()
+        return true
+    }
 }

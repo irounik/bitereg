@@ -8,4 +8,5 @@ interface Authenticator {
     suspend fun loginUser(email: String, password: String): AuthResponse
     suspend fun getCurrentUser(): User?
     fun isUserLoggedIn(): Boolean
+    suspend fun logoutUser(): Boolean
 }
