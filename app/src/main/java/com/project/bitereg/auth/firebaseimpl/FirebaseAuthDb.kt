@@ -2,8 +2,8 @@ package com.project.bitereg.auth.firebaseimpl
 
 import android.content.Context
 import com.google.firebase.FirebaseApp
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.project.bitereg.auth.Authenticator
 import com.project.bitereg.models.User
@@ -41,6 +41,12 @@ class FirebaseAuthDb(context: Context) : Authenticator {
             e.printStackTrace()
             AuthResponse.Failure(e)
         }
+    }
+
+    override suspend fun getCurrentUser(): User? {
+        val id = Firebase.auth.currentUser?.uid ?: return null
+        return FirebaseFirestore.getInstance().document("users/$id").get().await()
+            .toObject(User::class.java)
     }
 
     override fun isUserLoggedIn(): Boolean {
