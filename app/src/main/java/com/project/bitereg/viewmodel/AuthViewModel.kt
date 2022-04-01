@@ -26,13 +26,21 @@ class AuthViewModel @Inject constructor(
         viewModelScope.launch {
             authResultFlow.emit(AuthResponse.Loading)
             val response = authDb.createUser(name, email, password)
-            if (response is AuthResponse.Success) userDao.addUser(response.authResult)
+            if (response is AuthResponse.Success) {
+                userDao.addUser(response.authResult)
+            }
             authResultFlow.emit(response)
         }
     }
 
     suspend fun loginUser(email: String, password: String) {
         authDb.loginUser(email, password)
+    }
+
+    suspend fun updateUserDetails(userDetails: UserDetails): Boolean {
+        val currentUser = authDb.getCurrentUser() ?: return false
+        currentUser.details = userDetails
+        return userDao.updateUserDetails(currentUser)
     }
 
 }
