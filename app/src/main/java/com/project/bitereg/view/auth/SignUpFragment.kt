@@ -2,6 +2,7 @@ package com.project.bitereg.view.auth
 
 import android.os.Bundle
 import android.util.Log
+import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,6 +37,7 @@ class SignUpFragment : Fragment() {
         _binding = FragmentSignUpBinding.inflate(layoutInflater, container, false)
 
         binding.loginText.setOnClickListener {
+            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
         }
 
@@ -71,10 +73,14 @@ class SignUpFragment : Fragment() {
     private fun initViews() {
         binding.signUpBtn.setOnClickListener {
             if (isValidInput()) {
+                it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                 viewModel.createUser(
+                    binding.fullName.editText!!.text.toString(),
                     binding.emailInput.editText!!.text.toString(),
                     binding.passwordInput.editText!!.text.toString()
                 )
+            } else {
+                it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             }
         }
     }
@@ -115,7 +121,6 @@ class SignUpFragment : Fragment() {
         Log.d(TAG, "updateUI: $authResponse")
         when (authResponse) {
             is AuthResponse.Success -> {
-                Log.d(TAG, "setupFlow: ${authResponse.authResult.user?.uid}")
                 toggleViews(false)
                 findNavController().navigate(R.id.action_signUpFragment_to_detailInputFragment)
             }

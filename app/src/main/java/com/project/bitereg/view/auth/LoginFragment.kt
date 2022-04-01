@@ -1,6 +1,7 @@
 package com.project.bitereg.view.auth
 
 import android.os.Bundle
+import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +22,7 @@ class LoginFragment : Fragment() {
         _binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
 
         binding.registerText.setOnClickListener {
+            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
         }
 
