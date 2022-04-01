@@ -11,10 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BITERegister">
         <activity
-            android:name=".view.MainActivity"
+            android:name=".view.activities.AuthActivity"
             android:exported="false" />
         <activity
-            android:name=".view.SplashActivity"
+            android:name=".view.activities.DashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
