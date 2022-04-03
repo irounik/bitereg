@@ -35,7 +35,8 @@ class AuthViewModel @Inject constructor(
     }
 
     suspend fun loginUser(email: String, password: String) {
-        authDb.loginUser(email, password)
+        val response = authDb.loginUser(email, password)
+        authResultFlow.emit(response)
     }
 
     suspend fun logoutUser(): Boolean {
