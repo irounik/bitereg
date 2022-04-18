@@ -4,14 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.dashboard.ScanFragment">
+    android:background="?attr/colorOnPrimary"
+    tools:context=".view.dashboard.qrscan.ScanFragment">
 
     <com.budiyev.android.codescanner.CodeScannerView
         android:id="@+id/qr_scanner"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         app:autoFocusButtonVisible="false"
-        app:layout_constraintBaseline_toTopOf="parent"
-        app:maskColor="#25000000" />
+        app:frameColor="@color/primary_accent"
+        app:frameCornersRadius="4dp"
+        app:frameCornersSize="38dp"
+        app:frameSize="0.5"
+        app:frameThickness="6dp"
+        app:layout_constraintBaseline_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/top_guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <TextView
+        android:id="@+id/scan_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/scan_qr_code"
+        android:textColor="@color/primary_accent"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_guide" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
