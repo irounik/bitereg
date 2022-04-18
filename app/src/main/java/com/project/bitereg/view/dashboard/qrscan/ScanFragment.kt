@@ -1,26 +1,24 @@
-package com.project.bitereg.view.dashboard
+package com.project.bitereg.view.dashboard.qrscan
 
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.budiyev.android.codescanner.AutoFocusMode
 import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.DecodeCallback
 import com.budiyev.android.codescanner.ScanMode
-import com.google.android.material.snackbar.Snackbar
 import com.project.bitereg.databinding.FragmentScanBinding
+import com.vmadalin.easypermissions.EasyPermissions
+import com.vmadalin.easypermissions.dialogs.SettingsDialog
 
-class ScanFragment : Fragment() {
+class ScanFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
     private var _binding: FragmentScanBinding? = null
     private val binding get() = _binding!!
-    private lateinit var codeScanner: CodeScanner
+    private var codeScanner: CodeScanner? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,11 +31,11 @@ class ScanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupPermissions()
-        setupCodeScanner()
+        handlePermissions()
     }
 
     private fun setupCodeScanner() {
+        if (codeScanner != null) return
         codeScanner = CodeScanner(requireContext(), binding.qrScanner).apply {
             camera = CodeScanner.CAMERA_BACK
             formats = CodeScanner.ALL_FORMATS
@@ -54,7 +52,7 @@ class ScanFragment : Fragment() {
         }
 
         binding.qrScanner.setOnClickListener {
-            codeScanner.startPreview()
+            codeScanner?.startPreview()
         }
     }
 
@@ -62,52 +60,50 @@ class ScanFragment : Fragment() {
         Toast.makeText(requireContext(), qrString, Toast.LENGTH_SHORT).show()
     }
 
-    private fun setupPermissions() {
-        val cameraPermission = ContextCompat.checkSelfPermission(
-            requireContext(),
-            android.Manifest.permission.CAMERA
-        )
-        if (cameraPermission != PackageManager.PERMISSION_GRANTED) {
+    private fun handlePermissions() {
+        if (hasPermissions()) {
+            initViews()
+            setupCodeScanner()
+            codeScanner?.startPreview()
+        } else {
             makePermissionRequest()
         }
     }
 
+    private fun initViews() {
+        binding.qrScanner.visibility = View.VISIBLE
+    }
+
     private fun makePermissionRequest() {
-        ActivityCompat.requestPermissions(
-            requireActivity(),
-            arrayOf(android.Manifest.permission.CAMERA),
-            CAMERA_REQUEST_CODE
+        EasyPermissions.requestPermissions(
+            this,
+            "Location permission is required for this feature!",
+            PERMISSION_REQUEST_CODE,
+            android.Manifest.permission.ACCESS_FINE_LOCATION,
+            android.Manifest.permission.CAMERA
         )
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        when (requestCode) {
-            CAMERA_REQUEST_CODE -> {
-                if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                    Snackbar.make(
-                        binding.root,
-                        "Camera permission is required for QR Scan!",
-                        Snackbar.LENGTH_SHORT
-                    ).show()
-                } else {
-                    // Camera request is successful!
-                }
-            }
+    override fun onPermissionsDenied(requestCode: Int, perms: List<String>) {
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+            SettingsDialog.Builder(requireContext()).build().show()
+        } else {
+            makePermissionRequest()
         }
     }
 
+    override fun onPermissionsGranted(requestCode: Int, perms: List<String>) {
+        initViews()
+    }
+
     override fun onPause() {
-        codeScanner.releaseResources()
+        codeScanner?.releaseResources()
         super.onPause()
     }
 
     override fun onResume() {
         super.onResume()
-        codeScanner.startPreview()
+        handlePermissions()
     }
 
     override fun onDestroy() {
@@ -115,7 +111,14 @@ class ScanFragment : Fragment() {
         super.onDestroy()
     }
 
+    private fun hasPermissions(): Boolean {
+        return EasyPermissions.hasPermissions(
+            requireContext(),
+            android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.CAMERA
+        )
+    }
+
     companion object {
-        const val CAMERA_REQUEST_CODE = 101
+        const val PERMISSION_REQUEST_CODE = 101
     }
 }

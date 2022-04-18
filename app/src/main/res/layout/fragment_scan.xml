@@ -11,13 +11,15 @@
         android:id="@+id/qr_scanner"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:visibility="gone"
         app:autoFocusButtonVisible="false"
         app:frameColor="@color/primary_accent"
         app:frameCornersRadius="4dp"
         app:frameCornersSize="38dp"
         app:frameSize="0.5"
         app:frameThickness="6dp"
-        app:layout_constraintBaseline_toTopOf="parent" />
+        app:layout_constraintBaseline_toTopOf="parent"
+        tools:visibility="visible" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/top_guide"
