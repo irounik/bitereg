@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_account" />
     <fragment
         android:id="@+id/scanFragment"
-        android:name="com.project.bitereg.view.dashboard.ScanFragment"
+        android:name="com.project.bitereg.view.dashboard.qrscan.ScanFragment"
         android:label="fragment_scan"
         tools:layout="@layout/fragment_scan" />
 </navigation>
