@@ -67,10 +67,12 @@ class DetailInputFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 if (!validInput()) return@setOnClickListener
                 binding.progressBar.isVisible = true
                 lifecycleScope.launch {
-                    val success = viewModel.updateUserDetails(getUserDetailsFromInput())
+                    viewModel.updateUserDetails(getUserDetailsFromInput()).onSuccess {
+                        handleSuccess()
+                    }.onFailure {
+                        handleFailure()
+                    }
                     binding.progressBar.isVisible = false
-                    if (success) handleSuccess()
-                    else handleFailure()
                 }
             }
         }

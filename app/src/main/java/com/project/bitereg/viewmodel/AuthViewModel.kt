@@ -17,10 +17,6 @@ class AuthViewModel @Inject constructor(
     private val userDao: UserDao
 ) : ViewModel() {
 
-    companion object {
-        const val TAG = "AuthViewModel"
-    }
-
     val authResultFlow = MutableStateFlow<AuthResponse>(AuthResponse.None)
 
     fun createUser(name: String, email: String, password: String) {
@@ -44,10 +40,11 @@ class AuthViewModel @Inject constructor(
         return true
     }
 
-    suspend fun updateUserDetails(userDetails: UserDetails): Boolean {
-        val currentUser = authDb.getCurrentUser() ?: return false
-        currentUser.details = userDetails
-        return userDao.updateUserDetails(currentUser)
+    suspend fun updateUserDetails(userDetails: UserDetails): Result<Boolean> {
+        return authDb.getCurrentUser()?.let {
+            it.details = userDetails
+            userDao.updateUserDetails(it)
+        } ?: Result.failure(Exception("User not found!"))
     }
 
 }
