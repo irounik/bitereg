@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.budiyev.android.codescanner.AutoFocusMode
 import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.DecodeCallback
@@ -13,6 +14,9 @@ import com.budiyev.android.codescanner.ScanMode
 import com.project.bitereg.databinding.FragmentScanBinding
 import com.vmadalin.easypermissions.EasyPermissions
 import com.vmadalin.easypermissions.dialogs.SettingsDialog
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 
 class ScanFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
@@ -38,8 +42,8 @@ class ScanFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         if (codeScanner != null) return
         codeScanner = CodeScanner(requireContext(), binding.qrScanner).apply {
             camera = CodeScanner.CAMERA_BACK
-            formats = CodeScanner.ALL_FORMATS
-            autoFocusMode = AutoFocusMode.SAFE
+            formats = CodeScanner.TWO_DIMENSIONAL_FORMATS
+            autoFocusMode = AutoFocusMode.CONTINUOUS
             scanMode = ScanMode.SINGLE
             isAutoFocusEnabled = true
             isFlashEnabled = false
@@ -62,11 +66,18 @@ class ScanFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
     private fun handlePermissions() {
         if (hasPermissions()) {
-            initViews()
-            setupCodeScanner()
-            codeScanner?.startPreview()
+            startScanning()
         } else {
             makePermissionRequest()
+        }
+    }
+
+    private fun startScanning() {
+        setupCodeScanner()
+        initViews()
+        lifecycleScope.launch {
+            delay(200)
+            if(this.isActive) codeScanner?.startPreview()
         }
     }
 
