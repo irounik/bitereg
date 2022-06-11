@@ -28,4 +28,12 @@
     <string name="logout">Logout</string>
     <string name="scan_qr_code">Scan QR Code</string>
     <string name="issues">Issues</string>
+
+    <!--    Issues screen -->
+    <string name="report_issue">Report Issue</string>
+    <string name="no_issues_reported">No issues reported!</string>
+    <string name="description">Description</string>
+    <string name="enter_issue_title_here">Enter issue title here</string>
+    <string name="title">Title</string>
+    <string name="enter_issue_description">Enter issue description</string>
 </resources>

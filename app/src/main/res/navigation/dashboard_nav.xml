@@ -7,9 +7,17 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.project.bitereg.view.dashboard.HomeFragment"
+        android:name="com.project.bitereg.view.dashboard.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_issueFragment"
+            app:destination="@id/issueFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
     <fragment
         android:id="@+id/accountFragment"
         android:name="com.project.bitereg.view.dashboard.AccountFragment"
@@ -20,4 +28,9 @@
         android:name="com.project.bitereg.view.dashboard.qrscan.ScanFragment"
         android:label="fragment_scan"
         tools:layout="@layout/fragment_scan" />
+    <fragment
+        android:id="@+id/issueFragment"
+        android:name="com.project.bitereg.view.issue.IssueFragment"
+        android:label="fragment_issue"
+        tools:layout="@layout/fragment_issue" />
 </navigation>
