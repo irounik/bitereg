@@ -4,14 +4,17 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.project.bitereg.R
 import com.project.bitereg.databinding.ActivityDashboardBinding
+import com.project.bitereg.utils.NavBarController
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DashboardActivity : AppCompatActivity() {
+class DashboardActivity : AppCompatActivity(), NavBarController {
 
     lateinit var binding: ActivityDashboardBinding
+    override val bottomNav: () -> BottomNavigationView get() = { binding.bottomNav }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
