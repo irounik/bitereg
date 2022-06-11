@@ -19,7 +19,7 @@ import javax.inject.Inject
 class SplashActivity : AppCompatActivity() {
 
     companion object {
-        const val SPLASH_TIME = 2000L
+        const val SPLASH_TIME = 0L
     }
 
     @Inject
@@ -29,11 +29,11 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        findViewById<ImageView>(R.id.splash_logo).startAnimation(
-            AnimationUtils.loadAnimation(this, R.anim.smooth_rotation).apply {
-                duration = SPLASH_TIME * 4
-            }
-        )
+//        findViewById<ImageView>(R.id.splash_logo).startAnimation(
+//            AnimationUtils.loadAnimation(this, R.anim.smooth_rotation).apply {
+//                duration = SPLASH_TIME * 4
+//            }
+//        )
 
         lifecycleScope.launch {
             delay(SPLASH_TIME)
