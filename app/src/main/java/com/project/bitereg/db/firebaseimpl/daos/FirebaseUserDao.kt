@@ -14,7 +14,7 @@ class FirebaseUserDao : UserDao, FirebaseBaseDao<User>() {
 
     override suspend fun updateUserDetails(user: User): Result<Boolean> = firebaseUpdate(user)
 
-    override suspend fun getCurrentUserId(): String? {
+    override fun getCurrentUserId(): String? {
         return FirebaseAuth.getInstance().currentUser?.uid
     }
 
