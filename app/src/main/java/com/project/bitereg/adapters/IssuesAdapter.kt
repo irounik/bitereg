@@ -1,5 +1,6 @@
 package com.project.bitereg.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -32,10 +33,11 @@ class IssuesAdapter(
 
     override fun getItemCount(): Int = issues.size
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateList(newList: List<Issue>) {
         issues.clear()
         issues.addAll(newList)
-        notifyItemRangeInserted(0, newList.size)
+        notifyDataSetChanged()
     }
 
 }
