@@ -10,7 +10,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.project.bitereg.databinding.FragmentIssueBinding
+import com.project.bitereg.databinding.FragmentReportIssueBinding
 import com.project.bitereg.utils.CommonUtils
 import com.project.bitereg.viewmodel.IssueViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,17 +19,17 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
-class IssueFragment : Fragment() {
+class ReportIssueFragment : Fragment() {
 
-    private var _binding: FragmentIssueBinding? = null
-    private val binding: FragmentIssueBinding get() = _binding!!
+    private var _binding: FragmentReportIssueBinding? = null
+    private val binding: FragmentReportIssueBinding get() = _binding!!
     private val issueViewModel: IssueViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentIssueBinding.inflate(inflater)
+        _binding = FragmentReportIssueBinding.inflate(inflater)
         return binding.root
     }
 
@@ -88,7 +88,7 @@ class IssueFragment : Fragment() {
 
     private fun reportNewIssue() {
         val title = binding.issueTitleInput.editText?.text.toString()
-        val description = binding.issueTitleInput.editText?.text.toString()
+        val description = binding.issueDescriptionInput.editText?.text.toString()
         issueViewModel.reportIssue(title, description)
     }
 

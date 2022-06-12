@@ -11,8 +11,8 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_issueFragment"
-            app:destination="@id/issueFragment"
+            android:id="@+id/action_homeFragment_to_reportIssueFragment"
+            app:destination="@id/reportIssueFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
@@ -29,8 +29,8 @@
         android:label="fragment_scan"
         tools:layout="@layout/fragment_scan" />
     <fragment
-        android:id="@+id/issueFragment"
-        android:name="com.project.bitereg.view.issue.IssueFragment"
+        android:id="@+id/reportIssueFragment"
+        android:name="com.project.bitereg.view.issue.ReportIssueFragment"
         android:label="fragment_issue"
-        tools:layout="@layout/fragment_issue" />
+        tools:layout="@layout/fragment_report_issue" />
 </navigation>

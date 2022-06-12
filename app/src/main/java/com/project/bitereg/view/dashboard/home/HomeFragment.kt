@@ -54,7 +54,7 @@ class HomeFragment : Fragment() {
 
         binding.addIssueFab.setOnClickListener {
             (requireActivity() as NavBarController).hideNavBar()
-            findNavController().navigate(R.id.action_homeFragment_to_issueFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_reportIssueFragment)
         }
 
         binding.root.setOnRefreshListener {
