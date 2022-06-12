@@ -3,13 +3,9 @@ package com.project.bitereg.view.auth
 import android.os.Bundle
 import android.util.Log
 import android.view.HapticFeedbackConstants
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.children
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -17,33 +13,22 @@ import com.project.bitereg.R
 import com.project.bitereg.auth.firebaseimpl.AuthResponse
 import com.project.bitereg.databinding.FragmentSignUpBinding
 import com.project.bitereg.utils.CommonUtils
+import com.project.bitereg.view.base.BaseFragment
+import com.project.bitereg.view.base.Inflate
 import com.project.bitereg.viewmodel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SignUpFragment : Fragment() {
-
-    private var _binding: FragmentSignUpBinding? = null
-    private val binding get() = _binding!!
+class SignUpFragment : BaseFragment<FragmentSignUpBinding>() {
 
     private val viewModel by viewModels<AuthViewModel>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentSignUpBinding.inflate(layoutInflater, container, false)
+    override fun inflate(): Inflate<FragmentSignUpBinding> = FragmentSignUpBinding::inflate
 
-        binding.loginText.setOnClickListener {
-            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
-        }
-
-        initViews()
+    override fun onViewCreated(binding: FragmentSignUpBinding, savedInstanceState: Bundle?) {
+        initViews(binding)
         setupFlow()
-        return binding.root
     }
 
     private fun setupFlow() {
@@ -65,19 +50,21 @@ class SignUpFragment : Fragment() {
         }
     }
 
-    override fun onDestroy() {
-        _binding = null
-        super.onDestroy()
-    }
+    private fun initViews(binding: FragmentSignUpBinding) = with(binding) {
 
-    private fun initViews() {
-        binding.signUpBtn.setOnClickListener {
+        loginText.setOnClickListener {
+            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
+        }
+
+
+        signUpBtn.setOnClickListener {
             if (isValidInput()) {
                 it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                 viewModel.createUser(
-                    binding.fullName.editText!!.text.toString(),
-                    binding.emailInput.editText!!.text.toString(),
-                    binding.passwordInput.editText!!.text.toString()
+                    fullName.editText!!.text.toString(),
+                    emailInput.editText!!.text.toString(),
+                    passwordInput.editText!!.text.toString()
                 )
             } else {
                 it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)

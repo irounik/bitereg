@@ -1,10 +1,6 @@
 package com.project.bitereg.view.issue
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -12,6 +8,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.project.bitereg.databinding.FragmentReportIssueBinding
 import com.project.bitereg.utils.CommonUtils
+import com.project.bitereg.view.base.BaseFragment
+import com.project.bitereg.view.base.Inflate
 import com.project.bitereg.viewmodel.IssueViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -19,22 +17,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
-class ReportIssueFragment : Fragment() {
+class ReportIssueFragment : BaseFragment<FragmentReportIssueBinding>() {
 
-    private var _binding: FragmentReportIssueBinding? = null
-    private val binding: FragmentReportIssueBinding get() = _binding!!
     private val issueViewModel: IssueViewModel by viewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentReportIssueBinding.inflate(inflater)
-        return binding.root
-    }
+    override fun inflate(): Inflate<FragmentReportIssueBinding> =
+        FragmentReportIssueBinding::inflate
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onViewCreated(binding: FragmentReportIssueBinding, savedInstanceState: Bundle?) {
         initViews()
         initFlows()
     }
@@ -99,8 +89,4 @@ class ReportIssueFragment : Fragment() {
         return true
     }
 
-    override fun onDestroy() {
-        _binding = null
-        super.onDestroy()
-    }
 }

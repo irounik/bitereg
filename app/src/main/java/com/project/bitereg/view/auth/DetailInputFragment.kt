@@ -3,13 +3,9 @@ package com.project.bitereg.view.auth
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.DatePicker
 import androidx.core.view.children
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
@@ -20,60 +16,56 @@ import com.project.bitereg.utils.CommonUtils
 import com.project.bitereg.utils.DataUtils
 import com.project.bitereg.utils.SelectionBottomSheet
 import com.project.bitereg.view.activities.DashboardActivity
+import com.project.bitereg.view.base.BaseFragment
+import com.project.bitereg.view.base.Inflate
 import com.project.bitereg.viewmodel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.util.Calendar.*
 
 @AndroidEntryPoint
-class DetailInputFragment : Fragment(), DatePickerDialog.OnDateSetListener {
-
-    private var _binding: FragmentDetailInputBinding? = null
-    private val binding get() = _binding!!
+class DetailInputFragment : BaseFragment<FragmentDetailInputBinding>(),
+    DatePickerDialog.OnDateSetListener {
 
     val viewModel by viewModels<AuthViewModel>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentDetailInputBinding.inflate(layoutInflater, container, false)
-        initLayout()
-        return binding.root
+    override fun inflate(): Inflate<FragmentDetailInputBinding> =
+        FragmentDetailInputBinding::inflate
+
+    override fun onViewCreated(binding: FragmentDetailInputBinding, savedInstanceState: Bundle?) {
+        initLayout(binding)
     }
 
-    private fun initLayout() {
-        binding.apply {
-            setupInputs(courseInput, DataUtils.getCourses())
-            setupInputs(branchInput, DataUtils.getBranches())
-            setupInputs(batchInput, DataUtils.getBatches())
-            setupInputs(genderInput, DataUtils.getGender())
+    private fun initLayout(binding: FragmentDetailInputBinding) = binding.run {
+        setupInputs(courseInput, DataUtils.getCourses())
+        setupInputs(branchInput, DataUtils.getBranches())
+        setupInputs(batchInput, DataUtils.getBatches())
+        setupInputs(genderInput, DataUtils.getGender())
 
-            dobInput.editText?.setOnClickListener {
-                DatePickerDialog(
-                    requireContext(),
-                    this@DetailInputFragment,
-                    getInstance().get(YEAR),
-                    getInstance().get(MONTH),
-                    getInstance().get(DAY_OF_MONTH)
-                ).show()
-            }
+        dobInput.editText?.setOnClickListener {
+            DatePickerDialog(
+                requireContext(),
+                this@DetailInputFragment,
+                getInstance().get(YEAR),
+                getInstance().get(MONTH),
+                getInstance().get(DAY_OF_MONTH)
+            ).show()
+        }
 
-            inputLayoutLl.children.forEach {
-                CommonUtils.setupErrorState((it as TextInputLayout))
-            }
+        inputLayoutLl.children.forEach {
+            CommonUtils.setupErrorState((it as TextInputLayout))
+        }
 
-            submitBtn.setOnClickListener {
-                if (!validInput()) return@setOnClickListener
-                binding.progressBar.isVisible = true
-                lifecycleScope.launch {
-                    viewModel.updateUserDetails(getUserDetailsFromInput()).onSuccess {
-                        handleSuccess()
-                    }.onFailure {
-                        handleFailure()
-                    }
-                    binding.progressBar.isVisible = false
+        submitBtn.setOnClickListener {
+            if (!validInput()) return@setOnClickListener
+            binding.progressBar.isVisible = true
+            lifecycleScope.launch {
+                viewModel.updateUserDetails(getUserDetailsFromInput()).onSuccess {
+                    handleSuccess()
+                }.onFailure {
+                    handleFailure()
                 }
+                binding.progressBar.isVisible = false
             }
         }
     }

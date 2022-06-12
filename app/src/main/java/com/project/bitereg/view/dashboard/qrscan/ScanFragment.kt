@@ -1,40 +1,29 @@
 package com.project.bitereg.view.dashboard.qrscan
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.budiyev.android.codescanner.AutoFocusMode
 import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.DecodeCallback
 import com.budiyev.android.codescanner.ScanMode
 import com.project.bitereg.databinding.FragmentScanBinding
+import com.project.bitereg.view.base.BaseFragment
+import com.project.bitereg.view.base.Inflate
 import com.vmadalin.easypermissions.EasyPermissions
 import com.vmadalin.easypermissions.dialogs.SettingsDialog
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
-class ScanFragment : Fragment(), EasyPermissions.PermissionCallbacks {
+class ScanFragment : BaseFragment<FragmentScanBinding>(), EasyPermissions.PermissionCallbacks {
 
-    private var _binding: FragmentScanBinding? = null
-    private val binding get() = _binding!!
     private var codeScanner: CodeScanner? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentScanBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override fun inflate(): Inflate<FragmentScanBinding> = FragmentScanBinding::inflate
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onViewCreated(binding: FragmentScanBinding, savedInstanceState: Bundle?) {
         handlePermissions()
     }
 
@@ -77,7 +66,7 @@ class ScanFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         initViews()
         lifecycleScope.launch {
             delay(200)
-            if(this.isActive) codeScanner?.startPreview()
+            if (this.isActive) codeScanner?.startPreview()
         }
     }
 
@@ -115,11 +104,6 @@ class ScanFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     override fun onResume() {
         super.onResume()
         handlePermissions()
-    }
-
-    override fun onDestroy() {
-        _binding = null
-        super.onDestroy()
     }
 
     private fun hasPermissions(): Boolean {

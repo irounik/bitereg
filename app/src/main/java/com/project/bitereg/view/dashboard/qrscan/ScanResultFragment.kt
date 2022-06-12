@@ -1,31 +1,15 @@
 package com.project.bitereg.view.dashboard.qrscan
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.project.bitereg.databinding.FragmentScanResultBinding
+import com.project.bitereg.view.base.BaseFragment
+import com.project.bitereg.view.base.Inflate
 
-class ScanResultFragment : Fragment() {
+class ScanResultFragment : BaseFragment<FragmentScanResultBinding>() {
 
-    private var _binding: FragmentScanResultBinding? = null
-    private val binding get() = _binding!!
+    override fun inflate(): Inflate<FragmentScanResultBinding> = FragmentScanResultBinding::inflate
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentScanResultBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
-    override fun onDestroy() {
-        _binding = null
-        super.onDestroy()
+    override fun onViewCreated(binding: FragmentScanResultBinding, savedInstanceState: Bundle?) {
+        // TODO: Implement scan result
     }
 }
