@@ -7,7 +7,7 @@ import kotlinx.coroutines.tasks.await
 import java.lang.Exception
 import java.util.UUID
 
-abstract class FirebaseBaseDao<T: BaseModel> {
+abstract class FirebaseBaseDao<T : BaseModel> {
 
     abstract val collectionPath: String
     abstract val entity: Class<T>
@@ -27,7 +27,7 @@ abstract class FirebaseBaseDao<T: BaseModel> {
 
     suspend fun firebaseCreate(entity: T): Result<Boolean> {
         return try {
-            if(entity.id == null) entity.id = UUID.randomUUID().toString()
+            if (entity.id == null) entity.id = UUID.randomUUID().toString()
             collectionReference.document(entity.id!!).set(entity).await()
             Result.success(true)
         } catch (ex: Exception) {
@@ -39,6 +39,17 @@ abstract class FirebaseBaseDao<T: BaseModel> {
         return try {
             collectionReference.document(entity.id!!).set(entity).await()
             Result.success(true)
+        } catch (ex: Exception) {
+            Result.failure(ex)
+        }
+    }
+
+    suspend fun firebaseGetAll(): Result<List<T>> {
+        return try {
+            val docs = collectionReference.get().await().documents.map {
+                it.toObject(entity)
+            }
+            Result.success(docs.filterNotNull())
         } catch (ex: Exception) {
             Result.failure(ex)
         }

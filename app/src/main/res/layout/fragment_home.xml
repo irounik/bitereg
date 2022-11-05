@@ -16,28 +16,28 @@
             layout="@layout/app_bar_layout"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/your_issues_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:padding="6dp"
-            android:text="@string/issues"
-            android:textColor="@color/primary_accent"
-            android:textSize="24sp"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/app_bar" />
+        <!--        <TextView-->
+        <!--            android:id="@+id/your_issues_text"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="18dp"-->
+        <!--            android:padding="6dp"-->
+        <!--            android:text="@string/issues"-->
+        <!--            android:textColor="@color/primary_accent"-->
+        <!--            android:textSize="24sp"-->
+        <!--            android:visibility="gone"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/app_bar" />-->
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/issues_rv"
+            android:id="@+id/feed_rv"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:overScrollMode="never"
             android:paddingHorizontal="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/your_issues_text"
-            tools:listitem="@layout/issue_item_layout"
+            app:layout_constraintTop_toBottomOf="@id/app_bar"
+            tools:listitem="@layout/post_item_layout"
             tools:visibility="gone" />
 
         <ImageView
@@ -115,6 +115,7 @@
             android:backgroundTint="@color/primary_accent"
             android:contentDescription="@null"
             android:src="@drawable/ic_round_add_24"
+            android:visibility="gone"
             app:borderWidth="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

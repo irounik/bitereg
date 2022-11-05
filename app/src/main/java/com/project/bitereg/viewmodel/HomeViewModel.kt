@@ -5,26 +5,28 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.project.bitereg.db.IssueDao
+import com.project.bitereg.db.PostDao
 import com.project.bitereg.db.UserDao
 import com.project.bitereg.models.Issue
+import com.project.bitereg.models.Post
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val issueDao: IssueDao,
+    private val postDao: PostDao,
     private val userDao: UserDao
 ) : ViewModel() {
 
-    private val _issues: MutableLiveData<List<Issue>> = MutableLiveData()
-    val issues: LiveData<List<Issue>> get() = _issues
+    private val _posts: MutableLiveData<List<Post>> = MutableLiveData()
+    val posts: LiveData<List<Post>> get() = _posts
 
-    fun fetchIssues() {
+    fun fetchPosts() {
         viewModelScope.launch {
             userDao.getCurrentUserId()?.let { userId ->
-                issueDao.getIssues(userId).onSuccess { issues ->
-                    _issues.postValue(issues.filterNotNull())
+                postDao.getPosts(userId).onSuccess { posts ->
+                    _posts.postValue(posts)
                 }.onFailure {
                     it.printStackTrace()
                 }

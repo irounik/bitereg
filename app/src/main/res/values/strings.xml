@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BIT e-Reg</string>
+    <string name="app_name">BIT Space</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sign_in">Sign In</string>
@@ -36,4 +36,5 @@
     <string name="enter_issue_title_here">Enter issue title here</string>
     <string name="title">Title</string>
     <string name="enter_issue_description">Enter issue description</string>
+    <string name="post_image">Post Image</string>
 </resources>

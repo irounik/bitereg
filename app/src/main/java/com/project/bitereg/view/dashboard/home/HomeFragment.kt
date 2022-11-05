@@ -7,9 +7,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.bitereg.R
-import com.project.bitereg.adapters.IssuesAdapter
+import com.project.bitereg.adapters.FeedAdapter
 import com.project.bitereg.databinding.FragmentHomeBinding
-import com.project.bitereg.models.Issue
+import com.project.bitereg.models.Post
 import com.project.bitereg.utils.NavBarController
 import com.project.bitereg.view.base.BaseFragment
 import com.project.bitereg.view.base.Inflate
@@ -36,9 +36,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun initViews() {
-        binding.issuesRv.apply {
+        binding.feedRv.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = IssuesAdapter(issues = mutableListOf(), onIssueClicked = ::onIssueSelected)
+            adapter = FeedAdapter(posts = mutableListOf(), onPostClicked = ::onPostSelected)
         }
 
         binding.addIssueFab.setOnClickListener {
@@ -52,15 +52,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun intListeners() = binding.run {
-        viewModel.issues.observe(viewLifecycleOwner) { handleIssues(it) }
+        viewModel.posts.observe(viewLifecycleOwner) { handleFeed(it) }
     }
 
-    private fun handleIssues(issues: List<Issue>) = binding.run {
-        (issuesRv.adapter as? IssuesAdapter)?.updateList(issues)
+    private fun handleFeed(posts: List<Post>) = binding.run {
+        (feedRv.adapter as? FeedAdapter)?.updateList(posts)
         circularProgressbar.visibility = View.GONE
         root.isRefreshing = false
-        if (issues.isNotEmpty()) {
-            yourIssuesText.visibility = View.VISIBLE
+        if (posts.isNotEmpty()) {
+//            yourIssuesText.visibility = View.VISIBLE
         } else {
             noIssuesImg.visibility = View.VISIBLE
             noIssuesTest.visibility = View.VISIBLE
@@ -69,11 +69,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private fun loadData() {
         binding.circularProgressbar.visibility = View.VISIBLE
-        viewModel.fetchIssues()
+        viewModel.fetchPosts()
     }
 
-    private fun onIssueSelected(issue: Issue) {
-        Toast.makeText(context, issue.title, Toast.LENGTH_SHORT).show()
+    private fun onPostSelected(post: Post) {
+        Toast.makeText(context, post.title, Toast.LENGTH_SHORT).show()
     }
 
 }
