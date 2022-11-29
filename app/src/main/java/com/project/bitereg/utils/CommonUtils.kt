@@ -84,7 +84,8 @@ object CommonUtils {
     fun verifyInput(
         type: VerificationType,
         inputLayout: TextInputLayout,
-        shouldRequestFocus: Boolean = true
+        shouldRequestFocus: Boolean = true,
+        shouldShowErrorMessage: Boolean = true
     ): Boolean {
         setupErrorState(inputLayout)
         val inputText = inputLayout.editText?.text.toString()
@@ -99,6 +100,7 @@ object CommonUtils {
         }
 
         if (isInputValid) return true
+        if (!shouldShowErrorMessage) return false
 
         val errorMessage = when (type) {
             VerificationType.BLANK_CHECK -> "This should not be blank!!"

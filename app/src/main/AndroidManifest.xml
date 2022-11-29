@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".BiteregApplication"
@@ -16,6 +17,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/splashScreenTheme">
+        <activity
+            android:name=".view.activities.CreatePostActivity"
+            android:exported="false"
+            android:theme="@style/Theme.BITERegister" />
         <activity
             android:name=".view.activities.AuthActivity"
             android:exported="false"

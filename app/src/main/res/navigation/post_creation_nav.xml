@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/post_creation_nav"
+    app:startDestination="@id/postTypeSelectionFragment">
+
+    <fragment
+        android:id="@+id/postTypeSelectionFragment"
+        android:name="com.project.bitereg.view.post.PostTypeSelectionFragment"
+        android:label="fragment_post_type_selection"
+        tools:layout="@layout/fragment_post_type_selection">
+        <action
+            android:id="@+id/action_postTypeSelectionFragment_to_createNoticeFragment"
+            app:destination="@id/createNoticeFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_postTypeSelectionFragment_to_createEventFragment"
+            app:destination="@id/createEventFragment" />
+        <action
+            android:id="@+id/action_postTypeSelectionFragment_to_createJobFragment"
+            app:destination="@id/createJobFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_postTypeSelectionFragment_to_createQuoteFragment"
+            app:destination="@id/createQuoteFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createNoticeFragment"
+        android:name="com.project.bitereg.view.post.CreateNoticeFragment"
+        android:label="fragment_create_notice"
+        tools:layout="@layout/fragment_create_notice" />
+    <fragment
+        android:id="@+id/createEventFragment"
+        android:name="com.project.bitereg.view.post.CreateEventFragment"
+        android:label="fragment_create_event"
+        tools:layout="@layout/fragment_create_event" />
+    <fragment
+        android:id="@+id/createJobFragment"
+        android:name="com.project.bitereg.view.post.CreateJobFragment"
+        android:label="fragment_create_job"
+        tools:layout="@layout/fragment_create_job" />
+    <fragment
+        android:id="@+id/createQuoteFragment"
+        android:name="com.project.bitereg.view.post.CreateQuoteFragment"
+        android:label="fragment_create_quote"
+        tools:layout="@layout/fragment_create_quote" />
+
+</navigation>

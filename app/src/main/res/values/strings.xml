@@ -37,4 +37,19 @@
     <string name="title">Title</string>
     <string name="enter_issue_description">Enter issue description</string>
     <string name="post_image">Post Image</string>
+    <string name="what_do_you_want_to_post">What do you want to Post?</string>
+    <string name="notice">Notice</string>
+    <string name="event">Event</string>
+    <string name="job_intern">Job || Intern</string>
+    <string name="quote">Quote</string>
+    <string name="publish">Publish</string>
+    <string name="please_enter_the_notice_content_here">Please enter the notice content here.</string>
+    <string name="enter_the_notice_title_here">Enter the Notice title here</string>
+    <string name="verify_both_filled"><![CDATA[Please make sure that both Title & Body are filled!]]></string>
+    <string name="register">Register</string>
+    <string name="event_image">Event Image</string>
+    <string name="registration_form_url">Registration form URL</string>
+    <string name="choose_image">Choose Image</string>
+    <string name="enter_you_quote_here">Enter you Quote here..</string>
+    <string name="post">Post</string>
 </resources>

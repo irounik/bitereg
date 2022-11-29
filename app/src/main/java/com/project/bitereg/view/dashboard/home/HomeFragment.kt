@@ -1,5 +1,7 @@
 package com.project.bitereg.view.dashboard.home
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -9,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.bitereg.R
 import com.project.bitereg.adapters.FeedAdapter
 import com.project.bitereg.databinding.FragmentHomeBinding
+import com.project.bitereg.models.Event
 import com.project.bitereg.models.Post
 import com.project.bitereg.utils.NavBarController
 import com.project.bitereg.view.base.BaseFragment
@@ -38,7 +41,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private fun initViews() {
         binding.feedRv.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = FeedAdapter(posts = mutableListOf(), onPostClicked = ::onPostSelected)
+            adapter = FeedAdapter(
+                posts = mutableListOf(),
+                onPostClicked = ::onPostSelected,
+                onEventClicked = ::onRegisterClicked
+            )
         }
 
         binding.addIssueFab.setOnClickListener {
@@ -48,6 +55,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
         binding.root.setOnRefreshListener {
             loadData()
+        }
+    }
+
+    private fun onRegisterClicked(event: Event) {
+        try {
+            val url = event.registrationLink.let {
+                if (it.startsWith("https://")) it else "https://$it"
+            }
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(url)
+            startActivity(intent)
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+            Toast.makeText(requireContext(), "Invalid Registration Link", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -73,7 +94,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun onPostSelected(post: Post) {
-        Toast.makeText(context, post.title, Toast.LENGTH_SHORT).show()
+        when (post) {
+            is Event -> {
+                val action = HomeFragmentDirections.actionHomeFragmentToPostDetailsFragment(post)
+                findNavController().navigate(action)
+            }
+        }
+        Toast.makeText(context, post.type, Toast.LENGTH_SHORT).show()
     }
 
 }

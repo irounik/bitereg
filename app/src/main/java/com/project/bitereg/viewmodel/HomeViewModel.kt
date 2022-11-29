@@ -4,10 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.project.bitereg.db.IssueDao
 import com.project.bitereg.db.PostDao
 import com.project.bitereg.db.UserDao
-import com.project.bitereg.models.Issue
 import com.project.bitereg.models.Post
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -32,6 +30,11 @@ class HomeViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    suspend fun canUserPost(): Boolean {
+        val roles = userDao.getCurrentUser()?.roles
+        return roles?.contains("creator") ?: false
     }
 
 }

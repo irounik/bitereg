@@ -1,7 +1,9 @@
 package com.project.bitereg.di
 
+import com.project.bitereg.db.ImageDao
 import com.project.bitereg.db.IssueDao
 import com.project.bitereg.db.PostDao
+import com.project.bitereg.db.firebaseimpl.daos.FirebaseImageDao
 import com.project.bitereg.db.firebaseimpl.daos.FirebaseIssueDao
 import com.project.bitereg.db.firebaseimpl.daos.FirebasePostDao
 import com.project.bitereg.db.mocks.PostDaoMock
@@ -21,4 +23,6 @@ object IssueModule {
     fun providePostDao(): PostDao = FirebasePostDao()
 //    fun providePostDao(): PostDao = PostDaoMock()
 
+    @Provides
+    fun provideImageDao(): ImageDao = FirebaseImageDao()
 }

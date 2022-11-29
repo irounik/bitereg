@@ -9,7 +9,7 @@
         android:id="@+id/homeFragment"
         android:name="com.project.bitereg.view.dashboard.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_reportIssueFragment"
             app:destination="@id/reportIssueFragment"
@@ -17,6 +17,12 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_homeFragment_to_postTypeSelectionFragment"
+            app:destination="@id/postTypeSelectionFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_postDetailsFragment"
+            app:destination="@id/postDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
@@ -33,4 +39,51 @@
         android:name="com.project.bitereg.view.issue.ReportIssueFragment"
         android:label="fragment_issue"
         tools:layout="@layout/fragment_report_issue" />
+    <fragment
+        android:id="@+id/postTypeSelectionFragment"
+        android:name="com.project.bitereg.view.post.PostTypeSelectionFragment"
+        android:label="fragment_post_type_selection"
+        tools:layout="@layout/fragment_post_type_selection">
+        <action
+            android:id="@+id/action_postTypeSelectionFragment_to_createNoticeFragment"
+            app:destination="@id/createNoticeFragment" />
+        <action
+            android:id="@+id/action_postTypeSelectionFragment_to_createEventFragment"
+            app:destination="@id/createEventFragment" />
+        <action
+            android:id="@+id/action_postTypeSelectionFragment_to_createJobFragment"
+            app:destination="@id/createJobFragment" />
+        <action
+            android:id="@+id/action_postTypeSelectionFragment_to_createQuoteFragment"
+            app:destination="@id/createQuoteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createNoticeFragment"
+        android:name="com.project.bitereg.view.post.CreateNoticeFragment"
+        android:label="fragment_create_notice"
+        tools:layout="@layout/fragment_create_notice" />
+    <fragment
+        android:id="@+id/createEventFragment"
+        android:name="com.project.bitereg.view.post.CreateEventFragment"
+        android:label="fragment_create_event"
+        tools:layout="@layout/fragment_create_event" />
+    <fragment
+        android:id="@+id/createJobFragment"
+        android:name="com.project.bitereg.view.post.CreateJobFragment"
+        android:label="fragment_create_job"
+        tools:layout="@layout/fragment_create_job" />
+    <fragment
+        android:id="@+id/createQuoteFragment"
+        android:name="com.project.bitereg.view.post.CreateQuoteFragment"
+        android:label="fragment_create_quote"
+        tools:layout="@layout/fragment_create_quote" />
+    <fragment
+        android:id="@+id/postDetailsFragment"
+        android:name="com.project.bitereg.view.dashboard.home.PostDetailsFragment"
+        android:label="fragment_post_details"
+        tools:layout="@layout/fragment_post_details" >
+        <argument
+            android:name="post"
+            app:argType="com.project.bitereg.models.Post" />
+    </fragment>
 </navigation>

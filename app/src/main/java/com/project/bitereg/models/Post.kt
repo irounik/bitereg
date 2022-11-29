@@ -1,11 +1,56 @@
 package com.project.bitereg.models
 
-data class Post(
-    override var id: String? = null,
+open class Post(
+    val type: String,
+    var creatorId: String = "",
+    var creatorName: String = "",
+    var creatorProfilePic: String = "",
+    var createdAt: Long = -1
+) : BaseModel() {
+    fun setCreationDetails(
+        creatorId: String,
+        creatorProfilePic: String,
+        creatorName: String,
+        createdAt: Long = System.currentTimeMillis(),
+    ) {
+        this.creatorId = creatorId
+        this.creatorProfilePic = creatorProfilePic
+        this.creatorName = creatorName
+        this.createdAt = createdAt
+    }
+}
+
+class Notice(
     val title: String = "",
-    val description: String = "",
+    val noticeBody: String = ""
+) : Post(type = TYPE) {
+    companion object {
+        const val TYPE = "notice"
+    }
+}
+
+class Event(
     val imageUrl: String = "",
-    val createdBy: String = "",
-    var createdAt: Long = -1,
-    val userProfileImgUrl: String = "https://instagram.fixr3-1.fna.fbcdn.net/v/t51.2885-19/118403741_2553417368304355_1102007459970074185_n.jpg?stp=dst-jpg_s320x320&_nc_ht=instagram.fixr3-1.fna.fbcdn.net&_nc_cat=107&_nc_ohc=iZ58vfhi4isAX-rGUiV&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AT-35Yu8578_e6bYIBFzVP96bhqjPvo0kEvZjOanAq4VSA&oe=63555C72&_nc_sid=8fd12b"
-) : BaseModel()
+    val registrationLink: String = ""
+) : Post(type = TYPE) {
+    companion object {
+        const val TYPE = "event"
+    }
+}
+
+class Quote(val message: String = "") : Post(type = TYPE) {
+    companion object {
+        const val TYPE = "quote"
+    }
+}
+
+class JobOrIntern(
+    val title: String = "",
+    val jobDescription: String = "",
+    val registrationLink: String = "",
+    val companyName: String = ""
+) : Post(type = TYPE) {
+    companion object {
+        const val TYPE = "job|intern"
+    }
+}

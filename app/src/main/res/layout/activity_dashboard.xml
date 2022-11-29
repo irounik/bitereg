@@ -16,6 +16,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/dashboard_nav" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/create_post_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="18dp"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_edit"
+        android:visibility="gone"
+        app:backgroundTint="@color/primary_accent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/white"
+        tools:visibility="visible" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"

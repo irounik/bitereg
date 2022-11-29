@@ -18,6 +18,11 @@ class FirebaseUserDao : UserDao, FirebaseBaseDao<User>() {
         return FirebaseAuth.getInstance().currentUser?.uid
     }
 
+    override suspend fun getCurrentUser(): User? {
+        val id = getCurrentUserId() ?: return null
+        return firebaseGet(id).getOrNull()
+    }
+
     private companion object {
         private const val USERS_COLLECTION_PATH = "users"
     }

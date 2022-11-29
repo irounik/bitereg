@@ -80,11 +80,11 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>() {
             )
         ) return false
 
-        if (!CommonUtils.verifyInput(
-                type = CommonUtils.VerificationType.EMAIL,
-                binding.emailInput
-            )
-        ) return false
+//        if (!CommonUtils.verifyInput(
+//                type = CommonUtils.VerificationType.EMAIL,
+//                binding.emailInput
+//            )
+//        ) return false
 
         if (!CommonUtils.verifyInput(
                 type = CommonUtils.VerificationType.PASSWORD,
