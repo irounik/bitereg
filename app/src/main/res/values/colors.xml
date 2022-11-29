@@ -15,4 +15,5 @@
     <color name="mtrl_textinput_default_box_stroke_color">#EFA54E</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="error_red">#B00022</color>
+    <color name="text_color">#464646</color>
 </resources>

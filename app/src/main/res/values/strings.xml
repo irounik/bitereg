@@ -36,4 +36,5 @@
     <string name="enter_issue_title_here">Enter issue title here</string>
     <string name="title">Title</string>
     <string name="enter_issue_description">Enter issue description</string>
+    <string name="about_us">About Us</string>
 </resources>
