@@ -16,4 +16,5 @@
     <color name="transparent">#00FFFFFF</color>
     <color name="error_red">#B00022</color>
     <color name="border_line">#E5E5E5</color>
+    <color name="text_color">#464646</color>
 </resources>
