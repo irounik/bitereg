@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.project.bitereg.R
 import com.project.bitereg.databinding.EventItemLayoutBinding
+import com.project.bitereg.databinding.JobItemLayoutBinding
 import com.project.bitereg.databinding.NoticeItemLayoutBinding
 import com.project.bitereg.databinding.QuoteItemLayoutBinding
 import com.project.bitereg.models.*
@@ -30,6 +31,9 @@ class FeedAdapter(
     inner class QuoteViewHolder(val binding: QuoteItemLayoutBinding) :
         PostItemViewHolder(binding.root)
 
+    inner class JobViewHolder(val binding: JobItemLayoutBinding) :
+        PostItemViewHolder(binding.root)
+
     private fun inflateView(parent: ViewGroup, resId: Int): View {
         return LayoutInflater.from(parent.context)
             .inflate(resId, parent, false)
@@ -42,6 +46,9 @@ class FeedAdapter(
             )
             TYPE_QUOTE -> QuoteViewHolder(
                 QuoteItemLayoutBinding.bind(inflateView(parent, R.layout.quote_item_layout))
+            )
+            TYPE_JOB_INTERN -> JobViewHolder(
+                JobItemLayoutBinding.bind(inflateView(parent,R.layout.job_item_layout))
             )
             else -> EventViewHolder(
                 EventItemLayoutBinding.bind(inflateView(parent, R.layout.event_item_layout))
@@ -64,10 +71,25 @@ class FeedAdapter(
                     onEventClicked(currentPost)
                 }
             }
+            is JobViewHolder -> {
+                bindJobData(holder.binding,currentPost as JobOrIntern)
+                    holder.binding.applyBtn.setOnClickListener {
+
+                    }
+            }
         }
         holder.itemView.setOnClickListener {
             onPostClicked(currentPost)
         }
+    }
+
+    private fun bindJobData(binding: JobItemLayoutBinding, jobOrIntern: JobOrIntern) = with(binding) {
+        binding.jobTitle.text=jobOrIntern.title
+        binding.companyName.text=jobOrIntern.companyName
+        Glide.with(this.root).load(jobOrIntern.creatorProfilePic).placeholder(R.drawable.ic_user)
+            .into(userPic)
+
+
     }
 
     private fun bindQuoteData(binding: QuoteItemLayoutBinding, quote: Quote) = with(binding) {

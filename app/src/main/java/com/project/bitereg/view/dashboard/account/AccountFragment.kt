@@ -29,7 +29,7 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>() {
     }
 
     override fun onViewCreated(binding: FragmentAccountBinding, savedInstanceState: Bundle?) {
-        binding.logoutBtn.setOnClickListener {
+        binding.logOutBtn.setOnClickListener {
             lifecycleScope.launch {
                 authViewModel.logoutUser()
                 gotoAuthActivity()

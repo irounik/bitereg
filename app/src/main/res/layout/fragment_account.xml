@@ -45,7 +45,7 @@
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/roboto_bold"
             android:text="btech60021.19@bitmesra.ac.in"
-            android:textColor="@color/text_color"
+            android:textColor="@color/primary_text_color"
             app:layout_constraintBottom_toBottomOf="@id/profile_image"
             app:layout_constraintLeft_toRightOf="@id/profile_image" />
 
@@ -106,7 +106,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="About Us"
-                    android:textColor="@color/text_color"
+                    android:textColor="@color/primary_text_color"
                     android:textSize="18sp"
                     app:layout_constraintLeft_toRightOf="@id/ic_image_logo"
                     app:layout_constraintTop_toTopOf="parent"
@@ -141,14 +141,15 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_margin="1dp"
-                    android:src="@drawable/ic_edits"/>
+                    android:src="@drawable/ic_edits"
+                    app:tint="@color/primary_text_color" />
 
                 <TextView
                     android:id="@+id/ic_image_text3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Edit Profile"
-                    android:textColor="@color/text_color"
+                    android:textColor="@color/primary_text_color"
                     android:textSize="18sp"
                     app:layout_constraintLeft_toRightOf="@id/ic_image_logo3"
                     app:layout_constraintTop_toTopOf="parent"
@@ -186,6 +187,7 @@
                     android:id="@+id/ic_image_logo2"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
+                    app:tint="@color/primary_text_color"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_margin="1dp"
@@ -196,7 +198,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Send Us Feedback"
-                    android:textColor="@color/text_color"
+                    android:textColor="@color/primary_text_color"
                     android:textSize="18sp"
                     app:layout_constraintLeft_toRightOf="@id/ic_image_logo2"
                     app:layout_constraintTop_toTopOf="parent"
@@ -227,24 +229,24 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/feedbackConst"
-                android:layout_marginTop="22dp"
-                >
+                android:layout_marginTop="22dp">
 
                 <ImageView
                     android:id="@+id/ic_image_logo4"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
+                    android:src="@drawable/ic_help"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_margin="1dp"
-                    android:src="@drawable/ic_help"/>
+                    app:tint="@color/primary_text_color" />
 
                 <TextView
                     android:id="@+id/ic_image_text4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Help"
-                    android:textColor="@color/text_color"
+                    android:textColor="@color/primary_text_color"
                     android:textSize="18sp"
                     app:layout_constraintLeft_toRightOf="@id/ic_image_logo4"
                     app:layout_constraintTop_toTopOf="parent"
@@ -307,6 +309,7 @@
             <ImageView
                 android:id="@+id/ic_image_logo5"
                 android:layout_width="28dp"
+                app:tint="@color/primary_text_color"
                 android:layout_height="28dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -318,7 +321,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Terms Of Service"
-                android:textColor="@color/text_color"
+                android:textColor="@color/primary_text_color"
                 android:textSize="18sp"
                 app:layout_constraintLeft_toRightOf="@id/ic_image_logo5"
                 app:layout_constraintTop_toTopOf="parent"
@@ -351,17 +354,18 @@
                 android:id="@+id/ic_image_logo6"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
+                android:src="@drawable/ic_edits"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_margin="1dp"
-                android:src="@drawable/ic_edits"/>
+                app:tint="@color/primary_text_color" />
 
             <TextView
                 android:id="@+id/ic_image_text6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Privacy Policy"
-                android:textColor="@color/text_color"
+                android:textColor="@color/primary_text_color"
                 android:textSize="18sp"
                 app:layout_constraintLeft_toRightOf="@id/ic_image_logo6"
                 app:layout_constraintTop_toTopOf="parent"

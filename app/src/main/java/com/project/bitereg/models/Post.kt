@@ -46,7 +46,6 @@ class Quote(val message: String = "") : Post(type = TYPE) {
 
 class JobOrIntern(
     val title: String = "",
-    val jobDescription: String = "",
     val registrationLink: String = "",
     val companyName: String = ""
 ) : Post(type = TYPE) {
